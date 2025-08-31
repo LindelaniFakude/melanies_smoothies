@@ -1,6 +1,6 @@
 # Import python packages
 import streamlit as st
-streamlit.title('My Parents New Healthy Dinner')
+#streamlit.title('My Parents New Healthy Dinner')
 # from snowflake.snowpark.context import get_active_session
 # Snowpark COLUMN function named "col" we need to import it into our app
 from snowflake.snowpark.functions import col
