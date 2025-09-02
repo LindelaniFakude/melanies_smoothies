@@ -2,6 +2,7 @@
 import streamlit as st
 #streamlit.title('My Parents New Healthy Dinner')
 import requests
+import pandas
 # from snowflake.snowpark.context import get_active_session
 # Snowpark COLUMN function named "col" we need to import it into our app
 from snowflake.snowpark.functions import col
@@ -21,11 +22,15 @@ session = cnx.session()
 
 my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'),col('SEARCH_ON'))
 #my_dataframe = session.table("smoothies.public.fruit_options").select(col('name_on_order'))
-st.dataframe(data=my_dataframe, use_container_width=True) 
+#st.dataframe(data=my_dataframe, use_container_width=True) 
+#st.stop()
+
+#Convert the Snowpark Dataframe to a pandas Dataframe so we can use the LOC function
+pd_df=my_dataframe.to_pandas()
+st.dataframe(pd_df)
 st.stop()
 
 #Adding a Multiselect
-
 ingredients_list = st.multiselect(
     'Choose up to 5 ingredients:'
     ,my_dataframe
